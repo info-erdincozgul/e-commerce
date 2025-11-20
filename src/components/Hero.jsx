@@ -17,7 +17,7 @@ export default function Hero() {
         <div className="w-full h-70 relative overflow-hidden sm:h-auto sm:w-1/2 sm:overflow-visible sm:left-25 sm:overflow-y-hidden">
           <img
             src="/hero/hero-cover1.png"
-            className="absolute right-5 "
+            className="absolute right-5 h-full"
           ></img>
         </div>
       </div>
