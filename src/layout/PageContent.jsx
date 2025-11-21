@@ -1,5 +1,8 @@
+import AboutUsPage from "../pages/AboutUsPage";
+import ContactPage from "../pages/ContactPage";
 import HomePage from "../pages/HomePage";
-import Shop from "../pages/Shop";
+import ProductDetailPage from "../pages/ProductDetailPage";
+import ShopPage from "../pages/ShopPage";
 import { Route, Switch } from "react-router-dom";
 
 export default function PageContent() {
@@ -9,8 +12,17 @@ export default function PageContent() {
       <Route exact path="/">
         <HomePage />
       </Route>
-      <Route path="/shop">
-        <Shop />
+      <Route exact path="/shop">
+        <ShopPage />
+      </Route>
+      <Route path="/shop/:id">
+        <ProductDetailPage />
+      </Route>
+      <Route path="/contact-us">
+        <ContactPage />
+      </Route>
+      <Route path="/about-us">
+        <AboutUsPage />
       </Route>
     </>
   );

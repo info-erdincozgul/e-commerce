@@ -16,7 +16,9 @@ export default function PrimaryNavigation() {
         BrandName
       </span>
       <div className="flex gap-x-4 font-semibold text-doveGray hidden sm:flex">
-        <Link to="/"><span className="hover:text-ebonyClay cursor-pointer">Home</span></Link> 
+        <Link to="/">
+          <span className="hover:text-ebonyClay cursor-pointer">Home</span>
+        </Link>
         <Menu as="div" className="relative inline-block">
           <MenuButton className="inline-flex w-full text-ebonyClay justify-center font-semibold hover:bg-white/20">
             Shop
@@ -31,20 +33,14 @@ export default function PrimaryNavigation() {
           >
             <div className="py-1">
               <MenuItem>
-              
-                < span
-                  className="block px-4 py-2 text-sm text-white data-focus:bg-pictonBlue data-focus:text-white data-focus:outline-hidden"
-                ><Link to="/shop">
-                  Shop</Link>
+                <span className="block px-4 py-2 text-sm text-white data-focus:bg-pictonBlue data-focus:text-white data-focus:outline-hidden">
+                  <Link to="/shop">Shop</Link>
                 </span>
               </MenuItem>
               <MenuItem>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-white data-focus:bg-pictonBlue data-focus:text-white data-focus:outline-hidden"
-                >
+                <span className="block px-4 py-2 text-sm text-white data-focus:bg-pictonBlue data-focus:text-white data-focus:outline-hidden">
                   Menu 2
-                </a>
+                </span>
               </MenuItem>
               <MenuItem>
                 <a
@@ -57,9 +53,9 @@ export default function PrimaryNavigation() {
             </div>
           </MenuItems>
         </Menu>
-        <span className="hover:text-ebonyClay cursor-pointer">About</span>
+        <span className="hover:text-ebonyClay cursor-pointer"><Link to="/about-us">About</Link></span>
         <span className="hover:text-ebonyClay cursor-pointer">Blog</span>
-        <span className="hover:text-ebonyClay cursor-pointer">Contact</span>
+        <span className="hover:text-ebonyClay cursor-pointer"><Link to="/contact-us">Contact</Link></span>
         <span className="hover:text-ebonyClay cursor-pointer">Pages</span>
       </div>
       <span className="flex gap-x-6 w-1/2 justify-end sm:text-pictonBlue">

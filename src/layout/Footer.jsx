@@ -1,5 +1,5 @@
 import { Instagram, Facebook, Twitter } from "lucide-react";
-
+import { Link } from "react-router-dom/cjs/react-router-dom";
 export default function Footer() {
   return (
     <footer className="font-[Montserrat,sans-serif]">
@@ -22,7 +22,7 @@ export default function Footer() {
               Company Info
             </span>
             <ul className="flex flex-col gap-y-2 sm:font-bold">
-              <li className="hover:text-mercury cursor-pointer">About Us</li>
+              <li className="hover:text-mercury cursor-pointer"><Link to="/about-us">About Us</Link></li>
               <li className="hover:text-mercury cursor-pointer">Carrier</li>
               <li className="hover:text-mercury cursor-pointer">We are hiring</li>
               <li className="hover:text-mercury cursor-pointer">Blog</li>
@@ -33,7 +33,7 @@ export default function Footer() {
               Legal
             </span>
             <ul className="flex flex-col gap-y-2 sm:font-bold">
-              <li className="hover:text-mercury cursor-pointer">About Us</li>
+              <li className="hover:text-mercury cursor-pointer"><Link to="/about-us">About Us</Link></li>
               <li className="hover:text-mercury cursor-pointer">Carrier</li>
               <li className="hover:text-mercury cursor-pointer">We are hiring</li>
               <li className="hover:text-mercury cursor-pointer">Blog</li>
@@ -68,7 +68,7 @@ export default function Footer() {
             <form className="sm:flex sm:flex-wrap sm:w-4/5 sm:gap-y-2">
               <input
                 type="text"
-                value={"Your Email"}
+                defaultValue={"Your Email"}
                 className="bg-alabaster border-solid border-1 rounded-l-lg border-mercury text-doveGray px-6 w-2/3 h-15 sm:w-6/9"
               />
               <button className="bg-pictonBlue  py-5 px-4 rounded-r-lg text-white sm:w-3/9 hover:bg-ebonyClay ">
