@@ -62,7 +62,7 @@ export default function PrimaryNavigation() {
         <div className="hidden sm:flex">
           <UserRound className="w-5" />
           <span className="font-bold hover:text-ebonyClay cursor-pointer">
-            Login / Register
+            Login / <Link to="/signup">Register </Link>
           </span>
         </div>
         <Search className="hover:text-ebonyClay cursor-pointer" />

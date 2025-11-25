@@ -14,7 +14,7 @@ export default function FeaturedBlogs() {
       </div>
       <div className="sm:hidden flex flex-col items-center">
         <BlogCard index="1" />
-        <span class="w-3/4 h-1 bg-doveGray rounded-full opacity-10 my-4"></span>
+        <span className="w-3/4 h-1 bg-doveGray rounded-full opacity-10 my-4"></span>
         <BlogCard index="2" />
       </div>
       <div className="sm:flex w-4/6 gap-x-4 hidden ">
