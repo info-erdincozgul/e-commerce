@@ -1,7 +1,6 @@
 import ProductCard from "./ProductCard";
 
 export default function FeaturedProducts() {
-  const productCount = 5;
   return (
     <section className="flex flex-col mx-auto my-20 text-center font-[Montserrat,sans-serif]">
       <div className="flex flex-col text-doveGray items-center gap-y-4 my-8">
@@ -14,18 +13,7 @@ export default function FeaturedProducts() {
         </span>
       </div>
       <div className="sm:flex sm:w-6/10 mx-auto sm:gap-x-8">
-        {Array(productCount)
-          .fill(null)
-          .map((_, index) => (
-            <ProductCard key={index} index={index + 1} />
-          ))}
-      </div>
-      <div className="hidden sm:flex sm:w-6/10 mx-auto sm:gap-x-8">
-        {Array(productCount)
-          .fill(null)
-          .map((_, index) => (
-            <ProductCard key={index} index={index + 1} />
-          ))}
+      PRODUCT KARTLARI LAZIM
       </div>
       <div className="py-18">
         <button className="border-1 border-solid rounded py-4 px-8 text-sm font-bold text-pictonBlue hover:bg-pictonBlue hover:text-white cursor-pointer">

@@ -22,45 +22,47 @@ export default function useAxios({
   const instance = axios.create({
     baseURL,
     timeout: 5000,
-    // headers: {'authentication': 'foobar'}
+    headers: {},
   });
 
   const sendRequest = ({
+  url,
+  method,
+  data = null,
+  headers = null,
+  redirect = null,
+  callbackSuccess = null,
+  callbackError = null,
+}) => {
+  setLoading(true);
+  
+  console.log("sendRequest starts:", {
     url,
     method,
-    data = null,
-    redirect = null,
-    callbackSuccess = null,
-    callbackError = null,
-  }) => {
-    setLoading(true);
-    console.log(
-      "sendRequest starts: ",
-      "url: ",
-      url,
-      "method:  ",
-      method,
-      "data: ",
-      data,
-      "sendRequest: ",
-      loading
-    );
-    instance[method](url, data === null ? null : data)
-      .then(function (response) {
-        setData(response.data);
-        setLoading(false);
-        setError(null);
-        callbackSuccess && callbackSuccess();
-        redirect && history.push(redirect);
-        console.log("sendRequest response: ", response, "loadding: ", loading);
-      })
-      .catch(function (error) {
-        console.log("sendRequest error: ", error);
-        callbackError && callbackError();
-        setError(error.message);
-        setLoading(false);
-      });
-  };
+    data,
+    hasHeaders: !!headers,
+  });
+
+  const requestConfig = method === METHODS.GET || method === METHODS.DELETE
+    ? [url, { headers }]
+    : [url, data, { headers }];
+
+  instance[method](...requestConfig)
+    .then(function (response) {
+      setData(response.data);
+      setLoading(false);
+      setError(null);
+      callbackSuccess && callbackSuccess(response); 
+      redirect && history.push(redirect);
+      // console.log("sendRequest response: ", response, "loading: ", loading);
+    })
+    .catch(function (error) {
+      console.log("sendRequest error: ", error);
+      callbackError && callbackError(error); 
+      setError(error.message);
+      setLoading(false);
+    });
+};
 
   return { data, sendRequest, setData, error, loading, METHODS };
 }
