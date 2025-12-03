@@ -6,6 +6,7 @@ import ShopPage from "../pages/ShopPage";
 import { Route, Switch } from "react-router-dom";
 import SignUpPage from "../pages/SignUpPage";
 import LoginPage from "../pages/LoginPage";
+import ShoppingCartPage from "../pages/ShoppingCartPage";
 
 export default function PageContent() {
   return (
@@ -14,10 +15,10 @@ export default function PageContent() {
       <Route exact path="/">
         <HomePage />
       </Route>
-      <Route path="/shop/:gender/:categoryName/:categoryId">
+      <Route exact path="/shop/:gender/:categoryName/:categoryId">
         <ShopPage />
       </Route>
-      <Route path="/shop/detail/:id">
+      <Route path="/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId">
         <ProductDetailPage />
       </Route>
       <Route path="/contact-us">
@@ -31,6 +32,9 @@ export default function PageContent() {
       </Route>
       <Route path="/login">
         <LoginPage />
+      </Route>
+      <Route path="/shopping-cart">
+      <ShoppingCartPage/>
       </Route>
     </>
   );

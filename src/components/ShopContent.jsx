@@ -88,18 +88,18 @@ export default function ShopContent() {
   const getPageNumbers = () => {
     const pages = [];
     const maxVisiblePages = 3;
-    
+
     let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
     let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-    
+
     if (endPage - startPage + 1 < maxVisiblePages) {
       startPage = Math.max(1, endPage - maxVisiblePages + 1);
     }
-    
+
     for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
     }
-    
+
     return pages;
   };
 
@@ -114,7 +114,9 @@ export default function ShopContent() {
     <>
       <section className="flex flex-col items-center my-12 font-[Montserrat,sans-serif] gap-y-12 sm:w-7/10 sm:mx-auto">
         <div className="flex flex-col items-center gap-y-4 font-bold text-doveGray sm:flex-row sm:w-full sm:justify-between">
-          <span>Showing {productsInfo.length} of {totalProducts} results</span>
+          <span>
+            Showing {productsInfo.length} of {totalProducts} results
+          </span>
           <div className="flex flex-row items-center gap-x-2">
             <span>Views:</span>
             <LayoutGrid className="border rounded-xs py-3 px-3 w-10 h-10 border-mercury text-ebonyClay cursor-pointer" />
@@ -178,22 +180,25 @@ export default function ShopContent() {
                 <ProductCard key={product.id} data={product} />
               ))}
             </div>
+
+            <div className="hidden sm:flex sm:flex-wrap sm:w-full sm:items-center">
+              {productsInfo == "" || productsInfo == null ? <span className="text-2xl">No products found</span> : null}
+            </div>
           </div>
         )}
 
         <div className="font-bold my-12">
-          <button 
+          <button
             onClick={handleFirst}
             disabled={currentPage === 1}
             className={`border-1 border-silver rounded-tl-md rounded-bl-md py-8 px-6 ${
-              currentPage === 1 
-                ? 'bg-concrete text-silver cursor-not-allowed' 
-                : 'bg-white text-pictonBlue hover:bg-pictonBlue hover:text-white'
+              currentPage === 1
+                ? "bg-concrete text-silver cursor-not-allowed"
+                : "bg-white text-pictonBlue hover:bg-pictonBlue hover:text-white"
             }`}
           >
             First
           </button>
-
 
           {getPageNumbers().map((pageNum) => (
             <button
@@ -201,21 +206,21 @@ export default function ShopContent() {
               onClick={() => handlePageChange(pageNum)}
               className={`border-1 border-silver py-8 px-6 ${
                 pageNum === currentPage
-                  ? 'bg-pictonBlue text-white'
-                  : 'bg-white text-pictonBlue hover:bg-pictonBlue hover:text-white'
+                  ? "bg-pictonBlue text-white"
+                  : "bg-white text-pictonBlue hover:bg-pictonBlue hover:text-white"
               }`}
             >
               {pageNum}
             </button>
           ))}
 
-          <button 
+          <button
             onClick={handleLast}
             disabled={currentPage === totalPages}
             className={`border-1 border-silver rounded-tr-md rounded-br-md py-8 px-6 ${
-              currentPage === totalPages 
-                ? 'bg-concrete text-silver cursor-not-allowed' 
-                : 'bg-white text-pictonBlue hover:bg-pictonBlue hover:text-white'
+              currentPage === totalPages
+                ? "bg-concrete text-silver cursor-not-allowed"
+                : "bg-white text-pictonBlue hover:bg-pictonBlue hover:text-white"
             }`}
           >
             Last

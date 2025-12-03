@@ -13,18 +13,26 @@ import { useData } from "../hooks/useData";
 export default function PrimaryNavigation() {
   let userData = useData("client");
   let productData = useData("product");
+  let shoppingCartData = useData("shoppingCart");
 
   const categories = productData?.categories || [];
+  const cartList = shoppingCartData?.cart || [];
 
   const womenCategories = categories
     .filter((cat) => cat.gender === "k")
     .slice(0, 5);
+
   const menCategories = categories
     .filter((cat) => cat.gender === "e")
     .slice(0, 5);
 
   let user = userData.user;
   let isLoggedIn = user && user.userInfo.name && user.userInfo.email;
+  
+  const totalItems = cartList.reduce((sum, item) => sum + item.count, 0);
+  
+  const totalPrice = cartList.reduce((sum, item) => sum + (item.product.price * item.count), 0);
+
   return (
     <nav className="my-8 mx-auto w-5/6 sm:w-9/10 flex flex-wrap sm:flex-nowrap font-[Montserrat,sans-serif] sm:justify-between sm:items-center">
       <span className="w-1/2 sm:w-auto text-ebonyClay font-bold text-2xl cursor-pointer">
@@ -51,12 +59,9 @@ export default function PrimaryNavigation() {
                 <span className="block px-4 py-2 text-sm text-ebonyClay data-focus:bg-pictonBlue data-focus:text-white data-focus:outline-hidden">
                   <Link to="/shop/kadin">Woman</Link>
                 </span>
-                
               </MenuItem>
-                      <MenuItem>
-                <span className="block px-4 py-2">
-                  
-                </span>
+              <MenuItem>
+                <span className="block px-4 py-2"></span>
               </MenuItem>
 
               {womenCategories.map((category) => (
@@ -81,11 +86,8 @@ export default function PrimaryNavigation() {
                 </span>
               </MenuItem>
 
-                  
-                      <MenuItem>
-                <span className="block px-4 py-2">
-                  
-                </span>
+              <MenuItem>
+                <span className="block px-4 py-2"></span>
               </MenuItem>
 
               {menCategories.map((category) => (
@@ -134,7 +136,93 @@ export default function PrimaryNavigation() {
           </span>
         </div>
         <Search className="hover:text-ebonyClay cursor-pointer" />
-        <ShoppingCart className="hover:text-ebonyClay cursor-pointer" />
+
+        <Menu as="div" className="relative inline-block">
+          <MenuButton className="relative inline-flex w-full text-pictonBlue justify-center font-semibold hover:bg-white/20">
+            <ShoppingCart className="hover:text-ebonyClay cursor-pointer w-6 h-6" />
+            {/* Sepet badge */}
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
+          </MenuButton>
+          <MenuItems
+            transition
+            className="absolute right-0 mt-2 w-80 sm:w-96 z-50 origin-top-right bg-white rounded-md shadow-lg border border-gray-200 focus:outline-none p-4"
+          >
+            <div className="space-y-4">
+              <div className="flex justify-between items-center border-b pb-2">
+                <h3 className="font-bold text-lg text-ebonyClay">Shopping Cart</h3>
+                <span className="text-sm text-doveGray">{totalItems} items</span>
+              </div>
+
+              {cartList.length === 0 ? (
+                <div className="text-center py-8">
+                  <p className="text-doveGray">Your cart is empty</p>
+                </div>
+              ) : (
+                <>
+                  <div className="max-h-64 overflow-y-auto space-y-3">
+                    {cartList.map((cartItem) => (
+                      <MenuItem key={cartItem.id || cartItem.product?.id}>
+                        {({ focus }) => (
+                          <div className={`flex items-center p-2 rounded ${focus ? 'bg-gray-50' : ''}`}>
+                            <img 
+                              src={cartItem.product?.images?.[0]?.url} 
+                              alt={cartItem.product?.name}
+                              className="w-16 h-16 object-cover rounded"
+                            />
+                            <div className="ml-3 flex-1">
+                              <h4 className="font-semibold text-sm text-ebonyClay">
+                                {cartItem.product?.name}
+                              </h4>
+                              <p className="text-xs text-doveGray truncate">
+                                {cartItem.product?.description}
+                              </p>
+                              <div className="flex justify-between items-center mt-1">
+                                <span className="text-sm font-medium">
+                                  Quantity: {cartItem.count}
+                                </span>
+                                <span className="font-bold text-pictonBlue">
+                                  ${(cartItem.product?.price * cartItem.count).toFixed(2)}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </MenuItem>
+                    ))}
+                  </div>
+                  
+                  <div className="border-t pt-3">
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="font-bold text-ebonyClay">Total:</span>
+                      <span className="text-xl font-bold text-ebonyClay">
+                        ${totalPrice.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Link 
+                        to="/shopping-cart" 
+                        className="flex-1 bg-pictonBlue text-white text-center py-2 rounded hover:bg-blue-600 transition"
+                      >
+                        View Cart
+                      </Link>
+                      <Link 
+                        to="/checkout" 
+                        className="flex-1 bg-ebonyClay text-white text-center py-2 rounded hover:bg-gray-800 transition"
+                      >
+                        Checkout
+                      </Link>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </MenuItems>
+        </Menu>
+        
         <ChartNoAxesColumnIncreasing className="rotate-270 hover:text-ebonyClay cursor-pointer" />
       </span>
       <div className="my-20 gap-y-6 flex flex-col w-1/1 items-center text-3xl text-doveGray font-medium sm:hidden">

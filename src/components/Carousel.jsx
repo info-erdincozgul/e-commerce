@@ -1,22 +1,27 @@
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 
-const images = [
-  {
-    original: "/productDetail/product-detail-1b.png", // Ana görselin yolu
-    thumbnail: "/productDetail/product-detail-2k.png", // Küçük resmin yolu
-  },
-  {
-    original: "/productDetail/product-detail-1b.png",
-    thumbnail: "/productDetail/product-detail-1k.png",
-  },
-];
+const MyCarousel = (product) => {
+  const { images } = product.images;
+  const urls = [
+    {
+      original: images[0].url,
+      thumbnail: images[0].url,
+      thumbnailHeight: 20,
+      thumbnailWidth: 20,
+    },
+    {
+      original: images[0].url,
+      thumbnail: images[0].url,
+      thumbnailHeight: 20,
+      thumbnailWidth: 20,
+    },
+  ];
 
-const MyCarousel = () => {
   return (
-    <div className=" [&_.image-gallery-thumbnails]:mt-8 [&_.image-gallery-thumbnails]:w-1/2 [&_.image-gallery-thumbnails]:flex">
+    <div className="[&_.image-gallery-thumbnails.innerimg]:h-1/2 [&_.image-gallery-thumbnails]:mt-8 [&_.image-gallery-thumbnails]:w-1/2 [&_.image-gallery-thumbnails]:flex">
       <ImageGallery
-        items={images}
+        items={urls}
         infinite={true}
         // showFullscreenButton={true} // Tam ekran butonu
         showThumbnails={true}

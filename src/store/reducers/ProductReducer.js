@@ -17,7 +17,6 @@ const initialState = {
   filter: "",
   fetchState: "NOT_FETCHED",
 };
-
 const productReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CATEGORIES:
