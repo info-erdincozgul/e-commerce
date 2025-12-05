@@ -7,6 +7,8 @@ import { Route, Switch } from "react-router-dom";
 import SignUpPage from "../pages/SignUpPage";
 import LoginPage from "../pages/LoginPage";
 import ShoppingCartPage from "../pages/ShoppingCartPage";
+import PrivateRoute from "../components/PrivateRoute";
+import OrderPage from "../pages/OrderPage";
 
 export default function PageContent() {
   return (
@@ -34,8 +36,11 @@ export default function PageContent() {
         <LoginPage />
       </Route>
       <Route path="/shopping-cart">
-      <ShoppingCartPage/>
+        <ShoppingCartPage />
       </Route>
+      <PrivateRoute path="/orders">
+        <OrderPage />
+      </PrivateRoute>
     </>
   );
 }

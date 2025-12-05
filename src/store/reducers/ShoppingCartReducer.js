@@ -2,13 +2,13 @@ import {
   SET_CART,
   SET_PAYMENT,
   SET_ADDRESS,
-  REMOVE_FROM_CART
+  REMOVE_FROM_CART,
 } from "../actions/ShoppinCartAction";
 
 const initialState = {
   cart: [],
-  payment: {},
-  address: {},
+  payment: [],
+  address: [],
 };
 
 const shoppingCartReducer = (state = initialState, action) => {
@@ -66,6 +66,8 @@ const shoppingCartReducer = (state = initialState, action) => {
         ...state,
         address: action.payload,
       };
+
+  
 
     default:
       return state;

@@ -23,24 +23,6 @@ export const setLanguage = (lang) => {
   return { type: SET_LANGUAGE, payload: lang };
 };
 
-// export const fetchRoles = () => (dispatch, getState) => {
-//   // Burada normalde axios.get('/api/roles') gibi bir istek yapılır.
-//   // Biz şimdilik bir API isteğini simüle edelim (Mocking):
-
-//   dispatch(setFetchState("FETCHING"));
-
-//   setTimeout(() => {
-//     // API'den dönen örnek veri:
-//     const mockRoles = [
-//       { id: 1, name: "Admin", code: "ADM" },
-//       { id: 2, name: "Store Manager", code: "SM" },
-//       { id: 3, name: "Customer", code: "CUST" },
-//     ];
-
-//     dispatch(setRoles(mockRoles));
-//   }, 1000);
-// };
-
 export const loginUser = (credentials, history) => (dispatch) => {
   axios
     .post("https://workintech-fe-ecommerce.onrender.com/login", {

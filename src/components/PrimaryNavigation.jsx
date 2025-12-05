@@ -210,7 +210,7 @@ export default function PrimaryNavigation() {
                         View Cart
                       </Link>
                       <Link 
-                        to="/checkout" 
+                        to="/orders" 
                         className="flex-1 bg-ebonyClay text-white text-center py-2 rounded hover:bg-gray-800 transition"
                       >
                         Checkout

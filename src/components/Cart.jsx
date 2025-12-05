@@ -4,13 +4,12 @@ import { Link } from "react-router-dom/cjs/react-router-dom";
 import { Minus, Trash2, Plus } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { removeFromCart, setCart } from "../store/actions/ShoppinCartAction";
-import { useState } from "react";
 
 export default function Cart() {
   let shoppingCartData = useData("shoppingCart");
   const cartList = shoppingCartData?.cart || [];
   const dispatch = useDispatch();
-  const [selectedItems, setSelectedItems] = useState([]);
+  
 
   const totalItems = cartList.reduce((sum, item) => sum + item.count, 0);
   const totalPrice = cartList
@@ -32,6 +31,9 @@ export default function Cart() {
 
   const handleCountChange = (productId, change) => {
     const cartItem = cartList.find((item) => item.product.id === productId);
+    if (cartItem.count < 2 && change == -1) {
+      return;
+    }
     if (cartItem) {
       dispatch(
         setCart({
@@ -52,7 +54,7 @@ export default function Cart() {
 
   return (
     <div className="w-9/10 mx-auto sm:w-7/10 sm:my-24 flex flex-col sm:flex-row gap-x-8 gap-y-8 font-[Montserrat,sans-serif]">
-      <Menu as="div">
+      <Menu as="div" className="sm:w-5/7">
         <div className="space-y-4">
           <div className="flex justify-between items-center border-b pb-2">
             <h3 className="font-bold text-lg text-ebonyClay">Shopping Cart</h3>
@@ -145,10 +147,13 @@ export default function Cart() {
           )}
         </div>
       </Menu>
-      <div className="flex flex-col gap-y-6 items-start w-8/10 mx-auto sm:w-1/4">
-        <button className="bg-ebonyClay text-white text-center py-2 rounded px-20 py-4 w-full">
-          Confirm Order
-        </button>
+      <div className="flex flex-col gap-y-6 items-start w-8/10 mx-auto sm:w-full">
+        <Link
+          to="/orders"
+          className="bg-ebonyClay text-white text-center py-2 rounded py-4 w-full cursor-pointer"
+        >
+          <button className="cursor-pointer">Confirm Order</button>
+        </Link>
         <div className="flex flex-col gap-y-6 text-sm ebonyGray w-full">
           <span className="text-xl">Detail</span>
           <div className="flex flex-col border border-mercury px-8 py-12 gap-y-4">
@@ -157,11 +162,16 @@ export default function Cart() {
           </div>
         </div>
         <div>
-          <span className="text-pictonBlue font-bold">Total: ${totalPrice + 27}</span>
+          <span className="text-pictonBlue font-bold">
+            Total: ${totalPrice + 27}
+          </span>
         </div>
-        <button className="bg-ebonyClay text-white text-center py-2 rounded px-20 py-4 w-full">
-          Confirm Order
-        </button>
+        <Link
+          to="/orders"
+          className="bg-ebonyClay text-white text-center py-2 rounded py-4 w-full cursor-pointer"
+        >
+          <button className="cursor-pointer">Confirm Order</button>
+        </Link>
       </div>
     </div>
   );
