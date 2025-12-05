@@ -29,7 +29,7 @@ export default function AddressCard({ address, isSelected, onSelect, onEdit, onD
           }}
           className="text-xs font-semibold text-pictonBlue hover:text-ebonyClay underline flex items-center gap-1 cursor-pointer"
         >
-          <Edit2 size={12} /> Düzenle
+          <Edit2 size={12} /> Edit
         </button>
       </div>
 

@@ -19,6 +19,7 @@ export default function AddressForm({
   } = useForm({
     defaultValues: initialData || { city: "" },
   });
+  
   useEffect(() => {
     if (initialData) {
       reset(initialData);
@@ -63,9 +64,9 @@ export default function AddressForm({
         <div className="col-span-2">
           <label className={labelClass}>Address Title</label>
           <input
-            {...register("title", { required: "Title Needed" })}
+            {...register("title", { required: "Title is required" })}
             className={inputClass}
-            placeholder="Exp: Home Address, Work Address"
+            placeholder="e.g., Home Address, Work Address"
           />
           {errors.title && (
             <span className="text-burnSienna text-xs mt-1 block">
@@ -75,12 +76,13 @@ export default function AddressForm({
         </div>
         
         <div>
-          <label className={labelClass}>Name</label>
+          <label className={labelClass}>First Name</label>
           <input
-            {...register("name", { required: "Name Needed" })}
+            {...register("name", { required: "First name is required" })}
             className={inputClass}
+            placeholder="Your first name"
           />
-                {errors.name && (
+          {errors.name && (
             <span className="text-burnSienna text-xs mt-1 block">
               {errors.name.message}
             </span>
@@ -90,10 +92,11 @@ export default function AddressForm({
         <div>
           <label className={labelClass}>Last Name</label>
           <input
-            {...register("surname", { required: "Last Name Needed" })}
+            {...register("surname", { required: "Last name is required" })}
             className={inputClass}
+            placeholder="Your last name"
           />
-                {errors.surname && (
+          {errors.surname && (
             <span className="text-burnSienna text-xs mt-1 block">
               {errors.surname.message}
             </span>
@@ -101,19 +104,19 @@ export default function AddressForm({
         </div>
         
         <div className="col-span-2 sm:col-span-1">
-          <label className={labelClass}>Phone</label>
+          <label className={labelClass}>Phone Number</label>
           <input
             {...register("phone", {
-              required: "Phone Needed",
+              required: "Phone number is required",
               pattern: {
                 value: /^\d{10,11}$/,
-                message: "Phone number not correct format",
+                message: "Please enter a valid phone number (10-11 digits)",
               },
             })}
             className={inputClass}
             placeholder="5XX XXX XX XX"
           />
-                {errors.phone && (
+          {errors.phone && (
             <span className="text-burnSienna text-xs mt-1 block">
               {errors.phone.message}
             </span>
@@ -123,10 +126,13 @@ export default function AddressForm({
         <div className="col-span-2 sm:col-span-1">
           <label className={labelClass}>City</label>
           <select
-            {...register("city", { required: "City Needed" })}
+            {...register("city", { 
+              required: "City is required",
+              validate: value => value !== "" || "Please select a city"
+            })}
             className={inputClass}
           >
-            <option value="">Cities</option>
+            <option value="">Select a city</option>
             {cities.map((city) => (
               <option key={city} value={city.toLowerCase()}>
                 {city}
@@ -143,10 +149,11 @@ export default function AddressForm({
         <div>
           <label className={labelClass}>District</label>
           <input
-            {...register("district", { required: "District Needed" })}
+            {...register("district", { required: "District is required" })}
             className={inputClass}
+            placeholder="District name"
           />
-             {errors.district && (
+          {errors.district && (
             <span className="text-burnSienna text-xs mt-1 block">
               {errors.district.message}
             </span>
@@ -156,10 +163,11 @@ export default function AddressForm({
         <div>
           <label className={labelClass}>Neighborhood</label>
           <input
-            {...register("neighborhood", { required: "Neighborhood" })}
+            {...register("neighborhood", { required: "Neighborhood is required" })}
             className={inputClass}
+            placeholder="Neighborhood name"
           />
-              {errors.neighborhood && (
+          {errors.neighborhood && (
             <span className="text-burnSienna text-xs mt-1 block">
               {errors.neighborhood.message}
             </span>
@@ -169,12 +177,12 @@ export default function AddressForm({
         <div className="col-span-2">
           <label className={labelClass}>Address Details</label>
           <textarea
-            {...register("address", { required: "Address Detail Needed" })}
+            {...register("address", { required: "Address details are required" })}
             className={inputClass}
             rows="3"
-            placeholder="Open Address ..."
+            placeholder="Street, building number, apartment number, etc."
           ></textarea>
-               {errors.address && (
+          {errors.address && (
             <span className="text-burnSienna text-xs mt-1 block">
               {errors.address.message}
             </span>
@@ -206,10 +214,10 @@ export default function AddressForm({
           {initialData
             ? isSubmitting
               ? "Updating..."
-              : "Update"
+              : "Update Address"
             : isSubmitting
             ? "Saving..."
-            : "Save"}
+            : "Save Address"}
         </button>
       </div>
     </form>

@@ -34,14 +34,12 @@ export default function Order({ handleAddress }) {
     setApiError(null);
 
     if (editingAddress?.id) {
-      // UPDATE
       sendRequest({
         url: `/user/address`,
         method: METHODS.PUT,
         headers: header,
         data: { ...data, id: editingAddress.id },
         callbackSuccess: () => {
-          // Listeyi yenile
           sendRequest({
             url: `/user/address`,
             method: METHODS.GET,
@@ -61,14 +59,12 @@ export default function Order({ handleAddress }) {
         },
       });
     } else {
-      // CREATE
       sendRequest({
         url: `/user/address`,
         method: METHODS.POST,
         headers: header,
         data: data,
         callbackSuccess: () => {
-          // Listeyi yenile
           sendRequest({
             url: `/user/address`,
             method: METHODS.GET,
@@ -238,7 +234,7 @@ export default function Order({ handleAddress }) {
             <Link
               onClick={(e) => {
                 e.preventDefault();
-                handleAddress(true);
+                handleAddress(true, selectedAddressId);
               }}
               className="bg-ebonyClay text-white text-center py-2 rounded py-4 w-full cursor-pointer"
             >
@@ -259,7 +255,7 @@ export default function Order({ handleAddress }) {
             <Link
               onClick={(e) => {
                 e.preventDefault();
-                handleAddress(true);
+                handleAddress(true, selectedAddressId);
               }}
               className="bg-ebonyClay text-white text-center py-2 rounded py-4 w-full cursor-pointer"
             >

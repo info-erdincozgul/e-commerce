@@ -52,7 +52,7 @@ const shoppingCartReducer = (state = initialState, action) => {
     case REMOVE_FROM_CART:
       return {
         ...state,
-        cart: state.cart.filter((item) => item.product.id !== action.payload),
+        cart: action.payload,
       };
 
     case SET_PAYMENT:
@@ -66,8 +66,6 @@ const shoppingCartReducer = (state = initialState, action) => {
         ...state,
         address: action.payload,
       };
-
-  
 
     default:
       return state;

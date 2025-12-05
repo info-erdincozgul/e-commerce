@@ -15,6 +15,6 @@ export const setAddress = (address) => {
   return { type: SET_ADDRESS, payload: address };
 };
 
-export const removeFromCart = (productId) => {
-  return { type: REMOVE_FROM_CART, payload: productId };
+export const removeFromCart = () => {
+  return { type: REMOVE_FROM_CART, payload: [] };
 };

@@ -5,7 +5,7 @@ export default function BlogCard({ index }) {
   return (
     <div className="w-3/4 flex flex-col gap-y-4">
       <div className="relative">
-        <img src={imgUrl} alt="" />
+        <img src={imgUrl} alt="Blog post image" />
         <button className="absolute top-4 left-4 bg-cinnabar px-2 py-1 text-white text-xs rounded-xs">
           NEW
         </button>
@@ -17,7 +17,7 @@ export default function BlogCard({ index }) {
           <span className="text-doveGray">New</span>
         </div>
         <span className="text-ebonyClay text-xl font-semibold">
-          Loudest â la Madison #1 (L'integral)
+          Loudest à la Madison #1 (L'integral)
         </span>
         <span className="text-doveGray font-medium">
           We focus on ergonomics and meeting you where you work. It's only a

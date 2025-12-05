@@ -53,8 +53,8 @@ export default function Cart() {
   };
 
   return (
-    <div className="w-9/10 mx-auto sm:w-7/10 sm:my-24 flex flex-col sm:flex-row gap-x-8 gap-y-8 font-[Montserrat,sans-serif]">
-      <Menu as="div" className="sm:w-5/7">
+    <div className="w-8/10 mx-auto sm:w-7/10 sm:my-24 flex flex-col sm:flex-row gap-x-8 gap-y-8 font-[Montserrat,sans-serif]">
+      <Menu as="div" className="sm:w-full">
         <div className="space-y-4">
           <div className="flex justify-between items-center border-b pb-2">
             <h3 className="font-bold text-lg text-ebonyClay">Shopping Cart</h3>
@@ -147,7 +147,7 @@ export default function Cart() {
           )}
         </div>
       </Menu>
-      <div className="flex flex-col gap-y-6 items-start w-8/10 mx-auto sm:w-full">
+      <div className="flex flex-col gap-y-6 items-start w-full mx-auto sm:w-1/2">
         <Link
           to="/orders"
           className="bg-ebonyClay text-white text-center py-2 rounded py-4 w-full cursor-pointer"

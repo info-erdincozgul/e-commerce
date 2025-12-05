@@ -4,17 +4,14 @@ import PaymentType from "../components/OrderPayment";
 
 export default function OrderPage() {
   const [isValid, setIsValid] = useState(false);
+  const [addressId, setAddressId] = useState(false);
 
-  const handleAddress = (data) => {
-    setIsValid(data);
+  const handleAddress = (clicked, id) => {
+    setIsValid(clicked);
+    setAddressId(id);
   };
+
   return (
-    <>
-      {isValid ? (
-        <PaymentType />
-      ) : (
-        <Order handleAddress={handleAddress} />
-      )}
-    </>
+    <>{isValid ? <PaymentType addressId = {addressId} /> : <Order handleAddress={handleAddress} />}</>
   );
 }

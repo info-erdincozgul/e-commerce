@@ -15,18 +15,18 @@ export default function AboutUs() {
         </div>
         <img
           src="/hero/about-us-hero.png"
-          alt=""
+          alt="About Us Hero Image"
           className="w-9/10 my-24 sm:w-1/2 sm:my-0"
         />
       </div>
       <div className="flex flex-col w-7/10 mx-auto items-center gap-y-4 sm:items-start">
-        <span className="text-cinnabar text-xs">Problems trying</span>
+        <span className="text-cinnabar text-xs">Challenges we face</span>
         <div className="flex flex-col gap-y-12 sm:flex-row sm:gap-x-12">
           <span className="text-2xl font-bold text-ebonyClay text-center sm:w-1/3 sm:text-start">
             Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
           </span>
           <span className="text-sm text-medium text-doveGray sm:w-1/2">
-            Problems trying to resolve the conflict between the two major realms
+            The challenge of resolving the conflict between the two major realms
             of Classical physics: Newtonian mechanics
           </span>
         </div>

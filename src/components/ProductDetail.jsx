@@ -11,6 +11,7 @@ import { useData } from "../hooks/useData";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCart } from "../store/actions/ShoppinCartAction";
+import ProductCard from "./ProductCard";
 
 export default function ProductDetail() {
   let productData = useData("product");
@@ -64,15 +65,18 @@ export default function ProductDetail() {
             <div className="w-8 h-8 rounded-full bg-ebonyClay cursor-pointer"></div>
           </div>
           <div className="flex justify-between my-4 sm:w-6/8 sm:justify-start sm:gap-x-4 sm:my-16">
-            <button onClick={() => {
-              dispatch(setCart(
-                {
-              count: 1,
-              checked: true,
-              product: product[0],
-            }
-              ));
-            }} className="py-2 px-4 border bg-pictonBlue text-white rounded-sm cursor-pointer active:bg-ebonyClay">
+            <button
+              onClick={() => {
+                dispatch(
+                  setCart({
+                    count: 1,
+                    checked: true,
+                    product: product[0],
+                  })
+                );
+              }}
+              className="py-2 px-4 border bg-pictonBlue text-white rounded-sm cursor-pointer active:bg-ebonyClay"
+            >
               Select Options
             </button>
             <Heart className="text-ebonyClay bg-white p-2 rounded-full w-9 h-9 hover:bg-ebonyClay hover:text-white cursor-pointer" />
@@ -163,8 +167,20 @@ export default function ProductDetail() {
           BESTSELLER PRODUCTS
         </span>
         <div className="border-1 border-mercury w-8/10 sm:w-full"></div>
-        {/* <div className="flex flex-col gap-y-4 sm:flex-row"><ProductCard index="1b"/><ProductCard index="2b"/><ProductCard index="3b"/><ProductCard index="4b"/></div> */}
-        {/* <div className="hidden sm:flex "><ProductCard index="1b"/><ProductCard index="2b"/><ProductCard index="3b"/><ProductCard index="4b"/></div> */}
+        <div className="w-8/10 mx-auto sm:w-full">
+          <div className=" sm:hidden sm:flex-wrap sm:w-full sm:items-center">
+            {productsInfo.slice(0, 4).map((product) => (
+              <ProductCard key={product.id} data={product} />
+            ))}
+          </div>
+        </div>
+        <div className="w-8/10 mx-auto sm:w-full">
+          <div className="hidden sm:flex sm:flex-wrap sm:w-full sm:items-center">
+            {productsInfo.map((product) => (
+              <ProductCard key={product.id} data={product} />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -15,7 +15,7 @@ export default function BlogCardDesktop({ index }) {
   return (
     <div className="w-1/2 flex gap-x-8">
       <div className="w-2/6 relative">
-        <img src={imgUrl} alt="" />
+        <img src={imgUrl} alt="Product image" />
         <button className="absolute top-4 left-4 bg-cinnabar py-1 px-2 rounded-sm text-white text-sm">
           Sale
         </button>
@@ -67,7 +67,7 @@ export default function BlogCardDesktop({ index }) {
           </div>
         </div>
         <div className="flex items-center w-1/2 text-pictonBlue border-1 rounded-full border-pictonBlue justify-center py-2 hover:bg-pictonBlue hover:text-white cursor-pointer">
-          <span className="text-sm font-bold ">Learn More</span>
+          <span className="text-sm font-bold">Learn More</span>
           <ChevronRight className="w-6 h-6 hover:text-white" />
         </div>
       </div>

@@ -6,6 +6,7 @@ export const SET_LIMIT = "SET_LIMIT";
 export const SET_OFFSET = "SET_OFFSET";
 export const SET_FILTER = "SET_FILTER";
 
+
 export const setCategories = (categories) => {
   return { type: SET_CATEGORIES, payload: categories };
 };
@@ -25,12 +26,16 @@ export const setFetchState = (fetchState) => {
 export const setLimit = (limit) => {
   return { type: SET_LIMIT, payload: limit };
 };
+
 export const setOffset = (offset) => {
   return { type: SET_OFFSET, payload: offset };
 };
+
 export const setFilter = (filter) => {
   return { type: SET_FILTER, payload: filter };
 };
+
+
 
 export const getCategories = () => (dispatch) => {
   axios
